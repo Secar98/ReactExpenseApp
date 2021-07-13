@@ -23,8 +23,6 @@ const NewExpense = (props) => {
     setIsEditing(false);
   };
 
-  console.log(isEditing);
-
   return (
     <div className="new-expense">
       {!isEditing && (
