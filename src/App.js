@@ -9,22 +9,28 @@ const App = () => {
   const [expenses, setExpenses] = useState([
     {
       id: 'e1',
-      title: 'Toilet Paper',
-      amount: 1.99,
-      date: new Date(currentYear + 1 , 7, 14),
+      title: 'Playstation',
+      amount: 5990,
+      date: new Date(currentYear , 7, 14),
     },
-    { id: 'e2', title: 'New TV', amount: 799, date: new Date(currentYear - 1, 2, 12) },
+    { id: 'e2', title: 'Ny säng', amount: 3995, date: new Date(currentYear, 2, 12) },
     {
       id: 'e3',
-      title: 'Car Insurance',
-      amount: 294.67,
-      date: new Date(currentYear, 2, 28),
+      title: 'Bil försäkring',
+      amount: 567.96,
+      date: new Date(currentYear, 0, 28),
     },
     {
       id: 'e4',
-      title: 'New Desk (Wooden)',
-      amount: 450,
+      title: 'Nytt bord (trä)',
+      amount: 999.99,
       date: new Date(currentYear, 5, 12),
+    },
+    {
+      id: 'e5',
+      title: 'Drönare',
+      amount: 9999.99,
+      date: new Date(currentYear, 6, 12),
     },
   ]);
   

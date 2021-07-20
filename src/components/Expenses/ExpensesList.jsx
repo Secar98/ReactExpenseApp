@@ -5,7 +5,7 @@ import "./ExpensesList.css";
 
 const ExpensesList = (props) => {
   if (props.items.length === 0) {
-    return <h2 className="expenses-list__fallback">No Expenses Found</h2>;
+    return <h2 className="expenses-list__fallback">Inga utgifter hittade</h2>;
   }
 
   const onDeleteHandler = (id) => {
