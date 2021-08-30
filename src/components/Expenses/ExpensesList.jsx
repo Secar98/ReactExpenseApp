@@ -1,11 +1,13 @@
 import React from "react";
 
 import ExpenseItem from "./ExpenseItem";
-import "./ExpensesList.css";
+import styles from "./ExpensesList.module.css";
 
 const ExpensesList = (props) => {
   if (props.items.length === 0) {
-    return <h2 className="expenses-list__fallback">Inga utgifter hittade</h2>;
+    return (
+      <h2 className={styles.expenses_list__fallback}>Inga utgifter hittade</h2>
+    );
   }
 
   const onDeleteHandler = (id) => {
@@ -13,7 +15,7 @@ const ExpensesList = (props) => {
   };
 
   return (
-    <ul className="expenses-list">
+    <ul className={styles.expenses_list}>
       {props.items.map((expense) => (
         <ExpenseItem
           key={expense.id}

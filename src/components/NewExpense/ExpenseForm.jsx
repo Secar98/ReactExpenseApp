@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "./ExpenseForm.css";
+import styles from "./ExpenseForm.module.css";
 
 const ExpenseForm = (props) => {
   const currentYear = new Date().getFullYear();
@@ -37,8 +37,8 @@ const ExpenseForm = (props) => {
 
   return (
     <form onSubmit={submitHandler}>
-      <div className="new-expense__controls">
-        <div className="new-expense__control">
+      <div className={styles.new_expense__controls}>
+        <div className={styles.new_expense__control}>
           <label>Titel</label>
           <input
             type="text"
@@ -46,7 +46,7 @@ const ExpenseForm = (props) => {
             onChange={titleChangeHandler}
           />
         </div>
-        <div className="new-expense__control">
+        <div className={styles.new_expense__control}>
           <label>Pris</label>
           <input
             type="number"
@@ -56,7 +56,7 @@ const ExpenseForm = (props) => {
             onChange={amountChangeHandler}
           />
         </div>
-        <div className="new-expense__control">
+        <div className={styles.new_expense__control}>
           <label>Datum</label>
           <input
             type="date"
@@ -67,7 +67,7 @@ const ExpenseForm = (props) => {
           />
         </div>
       </div>
-      <div className="new-expense__actions">
+      <div className={styles.new_expense__actions}>
         <button type="submit">Lägg till utgift</button>
         <button type="button" onClick={props.onCancel}>
           Stäng

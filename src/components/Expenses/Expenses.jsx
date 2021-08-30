@@ -4,7 +4,7 @@ import ExpenseFilter from "./ExpenseFilter";
 import ExpensesList from "./ExpensesList";
 import ExpensesChart from "./ExpensesChart";
 import Card from "../UI/Card";
-import "./Expenses.css";
+import styles from "./Expenses.module.css";
 
 const Expenses = (props) => {
   const year = new Date().getFullYear().toString();
@@ -24,7 +24,7 @@ const Expenses = (props) => {
 
   return (
     <div>
-      <Card className="expenses">
+      <Card className={styles.expenses}>
         <ExpenseFilter
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
