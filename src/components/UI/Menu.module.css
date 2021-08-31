@@ -18,3 +18,9 @@
 .li__item > a:hover {
   color: #9e9e9e;
 }
+
+@media only screen and (max-width: 600px) {
+  .li__item {
+    font-size: 1em;
+  }
+}

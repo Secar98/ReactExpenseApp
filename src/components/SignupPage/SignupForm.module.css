@@ -45,3 +45,12 @@
   background-color: #510674;
   border-color: #510674;
 }
+
+@media only screen and (max-width: 600px) {
+  .container {
+    max-width: 80%;
+  }
+  .form_control {
+    max-width: 90%;
+  }
+}
