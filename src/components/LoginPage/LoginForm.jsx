@@ -20,9 +20,8 @@ const LoginForm = () => {
     setEnteredPassword(event.target.value);
   };
 
-  const submitHandler = (event, props) => {
+  const submitHandler = (event) => {
     event.preventDefault();
-    console.log(props.test);
     const credentials = {
       email: enteredEmail,
       password: enteredPassword,
