@@ -46,6 +46,17 @@
   border-color: #510674;
 }
 
+.form_control h1 {
+  background-color: #991414;
+  font: inherit;
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #40005d;
+  color: white;
+  border-radius: 12px;
+}
+
 .form_control h2 {
   text-align: center;
   font: inherit;

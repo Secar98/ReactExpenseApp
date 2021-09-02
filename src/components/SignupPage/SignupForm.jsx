@@ -5,6 +5,7 @@ import { JwtContext } from "../../context/JwtContext";
 import styles from "./SignupForm.module.css";
 
 function SignupForm() {
+  const [errors, setErrors] = useState("");
   const [enteredName, setEnteredName] = useState("");
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
@@ -47,8 +48,13 @@ function SignupForm() {
     })
       .then((response) => response.json())
       .then((data) => {
-        setToken(data.token);
-        history.push("/Home");
+        if (!data.token) {
+          setErrors(data.msg);
+        }
+        if (data.token) {
+          setToken(data.token);
+          history.push("/Home");
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -57,6 +63,7 @@ function SignupForm() {
   return (
     <div className={styles.container}>
       <form className={styles.form_control}>
+        {errors && <h1>{errors}</h1>}
         <label htmlFor="name">Name:</label>
         <input type="text" name="name" onChange={nameChangeHandler} />
         <label html="email">Email:</label>

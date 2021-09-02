@@ -7,6 +7,7 @@ import styles from "./LoginForm.module.css";
 const LoginForm = () => {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
+  const [errors, setErrors] = useState("");
 
   const history = useHistory();
   const { setToken } = useContext(JwtContext);
@@ -35,8 +36,14 @@ const LoginForm = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setToken(data.token);
-        history.push("/Home");
+        console.log(data.msg);
+        if (!data.token) {
+          setErrors(data.msg);
+        }
+        if (data.token) {
+          setToken(data.token);
+          history.push("/Home");
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -45,6 +52,7 @@ const LoginForm = () => {
   return (
     <div className={styles.container}>
       <form className={styles.form_control}>
+        {errors && <h1>{errors}</h1>}
         <label htmlFor="email">Email:</label>
         <input
           type="email"
