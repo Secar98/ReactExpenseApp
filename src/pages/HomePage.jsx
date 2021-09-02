@@ -8,8 +8,10 @@ export const HomePage = () => {
   const { token } = useContext(JwtContext);
 
   useEffect(() => {
+    setExpenses();
     fetchExpenses(token);
-  }, [token]);
+    removeExpenseHandler();
+  }, []);
 
   const fetchExpenses = (token) => {
     fetch("https://sebastian-expenses-backend.herokuapp.com/api/expense/get", {
@@ -30,6 +32,7 @@ export const HomePage = () => {
   };
 
   const removeExpenseHandler = (id) => {
+    const body = { id: id };
     fetch(
       "https://sebastian-expenses-backend.herokuapp.com/api/expense/delete",
       {
@@ -38,9 +41,10 @@ export const HomePage = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: id,
+        body: JSON.stringify(body),
       }
     );
+    fetchExpenses(token);
   };
   return (
     <div>
