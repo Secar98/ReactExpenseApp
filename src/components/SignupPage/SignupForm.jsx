@@ -62,12 +62,13 @@ function SignupForm() {
   };
   return (
     <div className={styles.container}>
-      <form className={styles.form_control}>
+      <form className={styles.form_control} onSubmit={onClickHandler}>
         {errors && <h1>{errors}</h1>}
         <label htmlFor="name">Name:</label>
-        <input type="text" name="name" onChange={nameChangeHandler} />
+        <input required type="text" name="name" onChange={nameChangeHandler} />
         <label html="email">Email:</label>
         <input
+          required
           type="email"
           name="email"
           autoComplete="email"
@@ -75,6 +76,7 @@ function SignupForm() {
         />
         <label htmlFor="password">Password:</label>
         <input
+          required
           type="password"
           name="password"
           autoComplete="new-password"
@@ -82,15 +84,20 @@ function SignupForm() {
         />
         <label htmlFor="password_confirm">Confirm Password:</label>
         <input
+          required
           type="password"
           name="password_confirm"
           autoComplete="new-password"
           onChange={passwordConfirmChangeHandler}
         />
         <h2>
-          Already have an account<Link to="/Login"> Login Here</Link>
+          Already have an account <Link to="/Login">Login Here</Link>
         </h2>
-        <button onClick={onClickHandler}>Signup</button>
+        <input
+          className={styles.form_control__submit}
+          type="submit"
+          value="Signup"
+        />
       </form>
     </div>
   );

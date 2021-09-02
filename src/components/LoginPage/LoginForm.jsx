@@ -20,8 +20,9 @@ const LoginForm = () => {
     setEnteredPassword(event.target.value);
   };
 
-  const submitHandler = (event) => {
+  const submitHandler = (event, props) => {
     event.preventDefault();
+    console.log(props.test);
     const credentials = {
       email: enteredEmail,
       password: enteredPassword,
@@ -51,10 +52,11 @@ const LoginForm = () => {
   };
   return (
     <div className={styles.container}>
-      <form className={styles.form_control}>
+      <form className={styles.form_control} onSubmit={submitHandler}>
         {errors && <h1>{errors}</h1>}
         <label htmlFor="email">Email:</label>
         <input
+          required
           type="email"
           name="email"
           autoComplete="email"
@@ -63,6 +65,7 @@ const LoginForm = () => {
         />
         <label htmlFor="password">Password:</label>
         <input
+          required
           type="password"
           name="password"
           autoComplete="current-password"
@@ -70,9 +73,13 @@ const LoginForm = () => {
           onChange={passwordChangeHandler}
         />
         <h2>
-          Don't have an account<Link to="/Signup"> Signup Here</Link>
+          Don't have an account <Link to="/Signup">Signup Here</Link>
         </h2>
-        <button onClick={submitHandler}>Login</button>
+        <input
+          className={styles.form_control__submit}
+          type="submit"
+          value="Login"
+        />
       </form>
     </div>
   );
