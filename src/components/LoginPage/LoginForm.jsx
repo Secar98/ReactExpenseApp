@@ -36,7 +36,6 @@ const LoginForm = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.msg);
         if (!data.token) {
           setErrors(data.msg);
         }
