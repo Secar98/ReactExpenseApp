@@ -4,8 +4,8 @@ import LoginForm from "../components/LoginPage/LoginForm";
 
 export const LoginPage = () => {
   return (
-    <div>
+    <>
       <LoginForm />
-    </div>
+    </>
   );
 };

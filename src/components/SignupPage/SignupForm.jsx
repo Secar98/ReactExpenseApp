@@ -57,20 +57,27 @@ function SignupForm() {
   return (
     <div className={styles.container}>
       <form className={styles.form_control}>
-        <label for="name">Name:</label>
+        <label htmlFor="name">Name:</label>
         <input type="text" name="name" onChange={nameChangeHandler} />
-        <label for="email">Email:</label>
-        <input type="email" name="email" onChange={emailChangeHandler} />
-        <label for="password">Password:</label>
+        <label html="email">Email:</label>
+        <input
+          type="email"
+          name="email"
+          autoComplete="email"
+          onChange={emailChangeHandler}
+        />
+        <label htmlFor="password">Password:</label>
         <input
           type="password"
           name="password"
+          autoComplete="new-password"
           onChange={passwordChangeHandler}
         />
-        <label for="password_confirm">Confirm Password:</label>
+        <label htmlFor="password_confirm">Confirm Password:</label>
         <input
           type="password"
           name="password_confirm"
+          autoComplete="new-password"
           onChange={passwordConfirmChangeHandler}
         />
         <h2>

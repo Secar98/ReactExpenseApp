@@ -8,16 +8,25 @@ const ExpenseFilter = (props) => {
   };
 
   const currentYear = new Date().getFullYear();
-  const year = [currentYear + 1, currentYear, currentYear - 1];
+  const filterYears = [
+    currentYear,
+    currentYear - 1,
+    currentYear - 2,
+    currentYear - 3,
+  ];
 
   return (
     <div className={styles.expenses_filter}>
       <div className={styles.expenses_filter__control}>
         <label>Filtrera år</label>
         <select value={props.selected} onChange={dropdownChangeHandler}>
-          <option value={year[0].toString()}>{year[0].toString()}</option>
-          <option value={year[1].toString()}>{year[1].toString()}</option>
-          <option value={year[2].toString()}>{year[2].toString()}</option>
+          {filterYears.map((year, index) => {
+            return (
+              <option key={index} value={year.toString()}>
+                {year.toString()}
+              </option>
+            );
+          })}
         </select>
       </div>
     </div>

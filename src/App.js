@@ -20,7 +20,7 @@ const App = () => {
         <Switch>
           <Route path="/Login" component={LoginPage} />
           <Route path="/Signup" component={SignupPage} />
-          {token ? <Route path="/Home" component={HomePage} /> : <div />}
+          {token ? <Route path="/Home" component={HomePage} /> : <></>}
         </Switch>
       </JwtContext.Provider>
     </div>

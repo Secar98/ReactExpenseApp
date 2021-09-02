@@ -2,18 +2,17 @@ import React, { useState, useContext, useEffect } from "react";
 import NewExpense from "../components/NewExpense/NewExpense";
 import Expenses from "../components/Expenses/Expenses";
 import { JwtContext } from "../context/JwtContext";
+import { RemoveExpense, AddExpense } from "../API/ExpenseFetches";
 
 export const HomePage = () => {
   const [expenses, setExpenses] = useState([]);
   const { token } = useContext(JwtContext);
 
   useEffect(() => {
-    setExpenses();
-    fetchExpenses(token);
-    removeExpenseHandler();
+    fetchExpenses();
   }, []);
 
-  const fetchExpenses = (token) => {
+  const fetchExpenses = () => {
     fetch("https://sebastian-expenses-backend.herokuapp.com/api/expense/get", {
       method: "GET",
       headers: {
@@ -25,33 +24,23 @@ export const HomePage = () => {
       .then((data) => setExpenses(Object.values(data)[0]));
   };
 
-  const addExpenseHandler = (expense) => {
-    setExpenses((prevExpenses) => {
-      return [expense, ...prevExpenses];
-    });
+  const addExpenseHandler = (body) => {
+    AddExpense(body, token);
   };
 
   const removeExpenseHandler = (id) => {
     const body = { id: id };
-    fetch(
-      "https://sebastian-expenses-backend.herokuapp.com/api/expense/delete",
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(body),
-      }
-    );
-    fetchExpenses(token);
+    RemoveExpense(body, token);
   };
+
+  fetchExpenses();
+
   return (
-    <div>
+    <>
       {expenses && (
         <Expenses onDelete={removeExpenseHandler} items={expenses} />
       )}
       {expenses && <NewExpense onAddExpense={addExpenseHandler} />}
-    </div>
+    </>
   );
 };

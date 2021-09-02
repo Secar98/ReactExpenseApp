@@ -45,12 +45,20 @@ const LoginForm = () => {
   return (
     <div className={styles.container}>
       <form className={styles.form_control}>
-        <label for="email">Email:</label>
-        <input type="email" name="email" onChange={emailChangeHandler} />
-        <label for="password">Password:</label>
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          name="email"
+          autoComplete="email"
+          id="email"
+          onChange={emailChangeHandler}
+        />
+        <label htmlFor="password">Password:</label>
         <input
           type="password"
           name="password"
+          autoComplete="current-password"
+          id="current-password"
           onChange={passwordChangeHandler}
         />
         <h2>
