@@ -1,21 +1,48 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Link } from "react-router-dom";
+import { JwtContext } from "../../context/JwtContext";
 import styles from "./Menu.module.css";
 
 export const Menu = () => {
+  const { token, setToken } = useContext(JwtContext);
+
+  const onClickHandler = () => {
+    setToken(null);
+  };
   return (
     <div>
       <ul className={styles.ul__menu}>
-        <li className={styles.li__item}>
-          <Link to="/Home">Home</Link>
-        </li>
-        <li className={styles.li__item}>
-          <Link to="/Login">Login</Link>
-        </li>
-        <li className={styles.li__item}>
-          <Link to="/Signup">Signup</Link>
-        </li>
+        {token ? (
+          <li className={styles.li__item}>
+            <Link to="/Home">Home</Link>
+          </li>
+        ) : (
+          <></>
+        )}
+        {token ? (
+          <li className={styles.li__item}>
+            <Link onClick={onClickHandler} to="/Login">
+              Logout
+            </Link>
+          </li>
+        ) : (
+          <></>
+        )}
+        {!token ? (
+          <li className={styles.li__item}>
+            <Link to="/Login">Login</Link>
+          </li>
+        ) : (
+          <></>
+        )}
+        {!token ? (
+          <li className={styles.li__item}>
+            <Link to="/Signup">Signup</Link>
+          </li>
+        ) : (
+          <></>
+        )}
       </ul>
     </div>
   );

@@ -17,7 +17,7 @@ const ExpenseItem = (props) => {
         <div className={styles.expense_item__price}>{props.amount} Kr</div>
         <button
           onClick={onClickHandler}
-          value={props.id}
+          value={`${props.id}`}
           className={styles.expense_item__button}
         >
           Ta bort

@@ -2,14 +2,14 @@
   margin: 10rem auto auto auto;
   border: solid #000 2px;
   border-radius: 10px;
-  max-width: 50%;
+  max-width: 30%;
   background-color: #220131;
 }
 
 .form_control {
   display: flex;
   flex-direction: column;
-  max-width: 50%;
+  width: 90%;
   margin: auto;
   padding: 2rem;
 }
@@ -46,11 +46,14 @@
   border-color: #510674;
 }
 
+.form_control h2 {
+  text-align: center;
+  font: inherit;
+  color: #fff;
+}
+
 @media only screen and (max-width: 600px) {
   .container {
-    max-width: 80%;
-  }
-  .form_control {
-    max-width: 90%;
+    min-width: 85%;
   }
 }

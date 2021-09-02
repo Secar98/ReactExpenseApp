@@ -15,7 +15,8 @@ const Expenses = (props) => {
   };
 
   const filteredExpenses = props.items.filter((expense) => {
-    return expense.date.getFullYear().toString() === filteredYear;
+    const expenseDate = new Date(expense.date).getFullYear().toString();
+    return expenseDate === filteredYear;
   });
 
   const onDeleteHandler = (id) => {

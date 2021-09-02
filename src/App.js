@@ -1,21 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
 
-import { Route, Switch } from "react-router-dom";
 import { Menu } from "./components/UI/Menu";
+
+import { JwtContext } from "./context/JwtContext";
+
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { SignupPage } from "./pages/SignupPage";
 
 const App = () => {
+  const [token, setToken] = useState(null);
+
   return (
     <div>
-      <Menu />
-      <Switch>
-        <Route path="/Home" component={HomePage} />
-        <Route path="/Login" component={LoginPage} />
-        <Route path="/Signup" component={SignupPage} />
-        <Route path="/" />
-      </Switch>
+      <JwtContext.Provider value={{ token, setToken }}>
+        <Redirect to="/Login" />
+        <Menu />
+        <Switch>
+          <Route path="/Login" component={LoginPage} />
+          <Route path="/Signup" component={SignupPage} />
+          {token ? <Route path="/Home" component={HomePage} /> : <div />}
+        </Switch>
+      </JwtContext.Provider>
     </div>
   );
 };
