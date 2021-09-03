@@ -58,7 +58,6 @@ const LoginForm = () => {
           type="email"
           name="email"
           autoComplete="email"
-          id="email"
           onChange={emailChangeHandler}
         />
         <label htmlFor="password">Password:</label>
@@ -67,7 +66,6 @@ const LoginForm = () => {
           type="password"
           name="password"
           autoComplete="current-password"
-          id="current-password"
           onChange={passwordChangeHandler}
         />
         <h2>

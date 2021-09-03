@@ -28,11 +28,11 @@ export const HomePage = () => {
   };
 
   useEffect(() => {
-    const newExpenses = async () => {
+    const getExpenses = async () => {
       const fetchedExpenses = await FetchExpenses(token);
       setExpenses(fetchedExpenses);
     };
-    newExpenses();
+    getExpenses();
   }, [setExpenses, token]);
 
   return (
