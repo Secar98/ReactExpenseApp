@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { Signup } from "../../API/Auth";
 import { JwtContext } from "../../context/JwtContext";
 
 import styles from "./SignupForm.module.css";
@@ -30,7 +31,7 @@ function SignupForm() {
     setEnteredPasswordConfirmed(event.target.value);
   };
 
-  const onClickHandler = (event) => {
+  const onClickHandler = async (event) => {
     event.preventDefault();
     const credentials = {
       name: enteredName,
@@ -39,26 +40,15 @@ function SignupForm() {
       password_confirm: enteredPasswordConfirm,
     };
 
-    fetch("https://sebastian-expenses-backend.herokuapp.com/api/auth/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(credentials),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (!data.token) {
-          setErrors(data.msg);
-        }
-        if (data.token) {
-          setToken(data.token);
-          history.push("/Home");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    const data = await Signup(credentials);
+    console.log(data);
+    if (!data.token) {
+      setErrors(data.msg);
+    }
+    if (data.token) {
+      setToken(data.token);
+      history.push("/Home");
+    }
   };
   return (
     <div className={styles.container}>

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { LogginEmail } from "../../API/Auth";
 import { JwtContext } from "../../context/JwtContext";
 
 import styles from "./LoginForm.module.css";
@@ -20,33 +21,20 @@ const LoginForm = () => {
     setEnteredPassword(event.target.value);
   };
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
     const credentials = {
       email: enteredEmail,
       password: enteredPassword,
     };
-
-    fetch("https://sebastian-expenses-backend.herokuapp.com/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(credentials),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (!data.token) {
-          setErrors(data.msg);
-        }
-        if (data.token) {
-          setToken(data.token);
-          history.push("/Home");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    const data = await LogginEmail(credentials);
+    if (!data.token) {
+      setErrors(data.msg);
+    }
+    if (data.token) {
+      setToken(data.token);
+      history.push("/Home");
+    }
   };
   return (
     <div className={styles.container}>
