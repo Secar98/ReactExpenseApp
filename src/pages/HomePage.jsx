@@ -10,7 +10,6 @@ export const HomePage = () => {
 
   const addExpenseHandler = async (body) => {
     const newId = await AddExpense(body, token);
-    console.log(newId);
     body._id = newId;
     setExpenses((prevExpenses) => {
       return [body, ...prevExpenses];
@@ -24,7 +23,6 @@ export const HomePage = () => {
     setExpenses(newExpenses);
   };
   useEffect(() => {
-    console.log("test");
     fetch("https://sebastian-expenses-backend.herokuapp.com/api/expense/get", {
       method: "GET",
       headers: {
