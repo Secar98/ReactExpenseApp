@@ -15,7 +15,7 @@ export const Menu = () => {
       <ul className={styles.ul__menu}>
         {token ? (
           <li className={styles.li__item}>
-            <Link to="/Home">Home</Link>
+            <Link to="/Home">Hem</Link>
           </li>
         ) : (
           <></>
@@ -23,7 +23,7 @@ export const Menu = () => {
         {token ? (
           <li className={styles.li__item}>
             <Link onClick={onClickHandler} to="/Login">
-              Logout
+              Logga ut
             </Link>
           </li>
         ) : (
@@ -31,14 +31,14 @@ export const Menu = () => {
         )}
         {!token ? (
           <li className={styles.li__item}>
-            <Link to="/Login">Login</Link>
+            <Link to="/Login">Logga in</Link>
           </li>
         ) : (
           <></>
         )}
         {!token ? (
           <li className={styles.li__item}>
-            <Link to="/Signup">Signup</Link>
+            <Link to="/Signup">Skapa konto</Link>
           </li>
         ) : (
           <></>

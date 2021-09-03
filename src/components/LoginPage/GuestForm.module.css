@@ -1,0 +1,22 @@
+.form_control {
+  width: 75%;
+  margin: auto auto 2rem auto;
+  padding: auto 2rem 2rem 2rem;
+}
+
+.form_control__submit {
+  font: inherit;
+  cursor: pointer;
+  padding: 1rem;
+  width: 100%;
+  border: 1px solid #40005d;
+  background-color: #40005d;
+  color: white;
+  border-radius: 12px;
+  font-size: 1.2em;
+}
+
+.form_control__submit:hover {
+  background-color: #510674;
+  border-color: #510674;
+}

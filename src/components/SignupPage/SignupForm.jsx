@@ -41,7 +41,6 @@ function SignupForm() {
     };
 
     const data = await Signup(credentials);
-    console.log(data);
     if (!data.token) {
       setErrors(data.msg);
     }
@@ -54,7 +53,7 @@ function SignupForm() {
     <div className={styles.container}>
       <form className={styles.form_control} onSubmit={onClickHandler}>
         {errors && <h1>{errors}</h1>}
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="name">Namn:</label>
         <input required type="text" name="name" onChange={nameChangeHandler} />
         <label html="email">Email:</label>
         <input
@@ -64,7 +63,7 @@ function SignupForm() {
           autoComplete="email"
           onChange={emailChangeHandler}
         />
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="password">Lösenord:</label>
         <input
           required
           type="password"
@@ -72,7 +71,7 @@ function SignupForm() {
           autoComplete="new-password"
           onChange={passwordChangeHandler}
         />
-        <label htmlFor="password_confirm">Confirm Password:</label>
+        <label htmlFor="password_confirm">Bekräfta Lösenord:</label>
         <input
           required
           type="password"
@@ -81,12 +80,12 @@ function SignupForm() {
           onChange={passwordConfirmChangeHandler}
         />
         <h2>
-          Already have an account <Link to="/Login">Login Here</Link>
+          Har du redan ett konto <Link to="/Login">Logga in här!</Link>
         </h2>
         <input
           className={styles.form_control__submit}
           type="submit"
-          value="Signup"
+          value="Skapa konto"
         />
       </form>
     </div>
