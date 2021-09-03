@@ -2,17 +2,29 @@ import React, { useState, useContext, useEffect } from "react";
 import NewExpense from "../components/NewExpense/NewExpense";
 import Expenses from "../components/Expenses/Expenses";
 import { JwtContext } from "../context/JwtContext";
-import { RemoveExpense, AddExpense } from "../API/ExpenseFetches";
+import { AddExpense, RemoveExpense } from "../API/ExpenseFetches";
 
 export const HomePage = () => {
   const [expenses, setExpenses] = useState([]);
   const { token } = useContext(JwtContext);
 
-  useEffect(() => {
-    fetchExpenses();
-  }, []);
+  const addExpenseHandler = async (body) => {
+    const newId = await AddExpense(body, token);
+    console.log(newId);
+    body._id = newId;
+    setExpenses((prevExpenses) => {
+      return [body, ...prevExpenses];
+    });
+  };
 
-  const fetchExpenses = () => {
+  const removeExpenseHandler = (id) => {
+    const body = { id: id };
+    RemoveExpense(body, token);
+    const newExpenses = expenses.filter((expense) => expense._id !== id);
+    setExpenses(newExpenses);
+  };
+  useEffect(() => {
+    console.log("test");
     fetch("https://sebastian-expenses-backend.herokuapp.com/api/expense/get", {
       method: "GET",
       headers: {
@@ -22,18 +34,7 @@ export const HomePage = () => {
     })
       .then((res) => res.json())
       .then((data) => setExpenses(Object.values(data)[0]));
-  };
-
-  const addExpenseHandler = (body) => {
-    AddExpense(body, token);
-  };
-
-  const removeExpenseHandler = (id) => {
-    const body = { id: id };
-    RemoveExpense(body, token);
-  };
-
-  fetchExpenses();
+  }, [setExpenses, token]);
 
   return (
     <>
