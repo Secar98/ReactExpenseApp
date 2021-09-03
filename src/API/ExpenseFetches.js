@@ -27,7 +27,25 @@ const AddExpense = (body, token) => {
     });
 };
 
+const FetchExpenses = (token) => {
+  return fetch(
+    "https://sebastian-expenses-backend.herokuapp.com/api/expense/get",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      return Object.values(data)[0];
+    });
+};
+
 module.exports = {
   RemoveExpense,
   AddExpense,
+  FetchExpenses,
 };

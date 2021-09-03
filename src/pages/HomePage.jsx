@@ -2,7 +2,11 @@ import React, { useState, useContext, useEffect } from "react";
 import NewExpense from "../components/NewExpense/NewExpense";
 import Expenses from "../components/Expenses/Expenses";
 import { JwtContext } from "../context/JwtContext";
-import { AddExpense, RemoveExpense } from "../API/ExpenseFetches";
+import {
+  AddExpense,
+  FetchExpenses,
+  RemoveExpense,
+} from "../API/ExpenseFetches";
 
 export const HomePage = () => {
   const [expenses, setExpenses] = useState([]);
@@ -22,16 +26,13 @@ export const HomePage = () => {
     const newExpenses = expenses.filter((expense) => expense._id !== id);
     setExpenses(newExpenses);
   };
+
   useEffect(() => {
-    fetch("https://sebastian-expenses-backend.herokuapp.com/api/expense/get", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setExpenses(Object.values(data)[0]));
+    const newExpenses = async () => {
+      const fetchedExpenses = await FetchExpenses(token);
+      setExpenses(fetchedExpenses);
+    };
+    newExpenses();
   }, [setExpenses, token]);
 
   return (
